@@ -6,14 +6,13 @@ import junit.framework.TestSuite;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 import org.reactome.server.tools.diagram.data.exception.DeserializationException;
-import org.reactome.server.tools.diagram.data.graph.raw.Graph;
-import org.reactome.server.tools.diagram.data.graph.raw.factory.GraphObjectsFactory;
+import org.reactome.server.tools.diagram.data.graph.Graph;
+import org.reactome.server.tools.diagram.data.graph.factory.GraphObjectsFactory;
 import org.reactome.server.tools.diagram.data.layout.Diagram;
 import org.reactome.server.tools.diagram.data.layout.factory.DiagramObjectsFactory;
 import sun.misc.IOUtils;
 
 import java.io.*;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;

@@ -1,4 +1,4 @@
-package org.reactome.server.tools.diagram.data.graph.raw;
+package org.reactome.server.tools.diagram.data.graph;
 
 import java.util.List;
 

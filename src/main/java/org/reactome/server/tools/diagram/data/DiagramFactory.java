@@ -1,8 +1,8 @@
 package org.reactome.server.tools.diagram.data;
 
 import org.reactome.server.tools.diagram.data.exception.DeserializationException;
-import org.reactome.server.tools.diagram.data.graph.raw.Graph;
-import org.reactome.server.tools.diagram.data.graph.raw.factory.GraphObjectsFactory;
+import org.reactome.server.tools.diagram.data.graph.Graph;
+import org.reactome.server.tools.diagram.data.graph.factory.GraphObjectsFactory;
 import org.reactome.server.tools.diagram.data.layout.Diagram;
 import org.reactome.server.tools.diagram.data.layout.factory.DiagramObjectsFactory;
 
