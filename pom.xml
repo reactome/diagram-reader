@@ -40,7 +40,6 @@
     <properties>
         <junit.version>4.12</junit.version>
         <gwtVersion>2.8.0-beta1</gwtVersion>
-        <reactome.web.quadtree>1.1.0</reactome.web.quadtree>
 
         <!--build-->
         <jdk.version>1.8</jdk.version>
@@ -58,13 +57,6 @@
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-servlet</artifactId>
             <version>${gwtVersion}</version>
-        </dependency>
-
-        <!-- QuadTree implementation for GWT -->
-        <dependency>
-            <groupId>uk.ac.ebi.pwp.widgets</groupId>
-            <artifactId>quadtree</artifactId>
-            <version>${reactome.web.quadtree}</version>
         </dependency>
 
         <dependency>
@@ -102,15 +94,6 @@
                     <target>${jdk.version}</target>
                 </configuration>
             </plugin>
-            <!--<plugin>-->
-                <!--<artifactId>maven-jar-plugin</artifactId>-->
-                <!--<version>${maven.jar.version}</version>-->
-                <!--<configuration>-->
-                    <!--<excludes>-->
-                        <!--<exclude>**/logback.xml</exclude>-->
-                    <!--</excludes>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
 
             <!-- Generate jar with dependencies -->
             <plugin>

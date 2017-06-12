@@ -1,11 +1,9 @@
 package org.reactome.server.tools.diagram.data.layout;
 
-import uk.ac.ebi.pwp.structures.quadtree.client.QuadTreeBox;
-
 /**
  * @author Antonio Fabregat <fabregat@ebi.ac.uk>
  */
-public interface DiagramObject extends QuadTreeBox {
+public interface DiagramObject {
 
     Long getId(); //unique per diagram
 
@@ -30,4 +28,11 @@ public interface DiagramObject extends QuadTreeBox {
     //Don use get -> getContextMenuTrigger (because AutoBean only overrides the non-property methods)
     ContextMenuTrigger contextMenuTrigger(); //Behaviour override with DiagramObjectCategory
 
+    Double getMinX();
+
+    Double getMinY();
+
+    Double getMaxX();
+
+    Double getMaxY();
 }
