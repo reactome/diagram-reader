@@ -5,6 +5,7 @@ import org.reactome.server.tools.diagram.data.exception.DeserializationException
 import org.reactome.server.tools.diagram.data.graph.Graph;
 import org.reactome.server.tools.diagram.data.layout.Diagram;
 import org.reactome.server.tools.diagram.data.mapper.ObjectMapperProvider;
+import org.reactome.server.tools.diagram.data.profile.DiagramProfile;
 
 /**
  * @author Kostas Sidiropoulos <ksidiro@ebi.ac.uk>
@@ -22,6 +23,10 @@ public abstract class DiagramFactory {
 
     public static Graph getGraph(String json) throws DeserializationException {
         return getObject(Graph.class, json);
+    }
+
+    public static DiagramProfile getProfile(String json) throws DeserializationException {
+        return getObject(DiagramProfile.class, json);
     }
 
     private static <T> T getObject(Class<T> cls, String json) throws DeserializationException {
