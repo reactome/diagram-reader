@@ -1,4 +1,4 @@
-package org.reactome.server.tools;
+package org.reactome.server.tools.diagram.data;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -7,9 +7,7 @@ import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 import org.reactome.server.tools.diagram.data.exception.DeserializationException;
 import org.reactome.server.tools.diagram.data.graph.Graph;
-import org.reactome.server.tools.diagram.data.graph.factory.GraphObjectsFactory;
 import org.reactome.server.tools.diagram.data.layout.Diagram;
-import org.reactome.server.tools.diagram.data.layout.factory.DiagramObjectsFactory;
 import sun.misc.IOUtils;
 
 import java.io.*;
@@ -53,9 +51,10 @@ public class AppTest extends TestCase {
         String url = BASE_URL + DIAGRAM_ID + SUFFIX;
         try {
             String json = readFromURL(url);
-            Diagram diagram = DiagramObjectsFactory.getObject(Diagram.class, json);
+            Diagram diagram = DiagramFactory.getDiagram(json);
             assertNotNull(diagram);
-            System.out.println("Testing diagram[" + DIAGRAM_ID + "] ...OK");
+            assertEquals(DIAGRAM_ID, diagram.getStableId());
+            System.out.println("Testing diagram[" + DIAGRAM_ID + "] ... OK");
         } catch (IOException e) {
             fail("Could not retrieve diagram from: " + url);
         } catch (DeserializationException e) {
@@ -72,9 +71,9 @@ public class AppTest extends TestCase {
         String url = BASE_URL + DIAGRAM_ID + ".graph" + SUFFIX;
         try {
             String json = readFromURL(url);
-            Graph graph = GraphObjectsFactory.getObject(Graph.class, json);
+            Graph graph = DiagramFactory.getGraph(json);
             assertNotNull(graph);
-            System.out.println("Testing graph[" + DIAGRAM_ID + "] ...OK");
+            System.out.println("Testing graph[" + DIAGRAM_ID + "] ... OK");
         } catch (IOException e) {
             fail("Could not retrieve graph from: " + url);
         } catch (DeserializationException e) {
@@ -83,12 +82,12 @@ public class AppTest extends TestCase {
         }
     }
 
-    public static String readFromURL(String url) throws IOException {
+    private static String readFromURL(String url) throws IOException {
         InputStream in = new URL(url).openStream();
         return new String(IOUtils.readFully(in, -1, true));
     }
 
-    public static String readFile(String filename) throws IOException {
+    private static String readFile(String filename) throws IOException {
         return new String(Files.readAllBytes(Paths.get(filename)));
     }
 }
