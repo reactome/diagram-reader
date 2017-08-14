@@ -39,7 +39,7 @@
 
     <properties>
         <junit.version>4.12</junit.version>
-        <gwtVersion>2.8.0-beta1</gwtVersion>
+        <jackson.version>2.9.0</jackson.version>
 
         <!--build-->
         <jdk.version>1.8</jdk.version>
@@ -54,16 +54,26 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-servlet</artifactId>
-            <version>${gwtVersion}</version>
-        </dependency>
-
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <!-- Required for deserialization to Java interfaces -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-mrbean</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
     </dependencies>
 
