@@ -1,6 +1,8 @@
 package org.reactome.server.tools.diagram.data.layout.impl;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.reactome.server.tools.diagram.data.layout.Coordinate;
 
 /**
@@ -10,7 +12,9 @@ public class CoordinateFactory implements Coordinate {
     private Double x;
     private Double y;
 
-    private CoordinateFactory(Double x, Double y) {
+    // Important: annotation of the constructor and its parameters.
+    @JsonCreator
+    private CoordinateFactory(@JsonProperty("x") Double x, @JsonProperty("y") Double y) {
         this.x = x;
         this.y = y;
     }

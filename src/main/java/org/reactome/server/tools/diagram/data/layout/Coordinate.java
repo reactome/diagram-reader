@@ -1,8 +1,14 @@
 package org.reactome.server.tools.diagram.data.layout;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.reactome.server.tools.diagram.data.layout.impl.CoordinateFactory;
+
 /**
  * @author Antonio Fabregat <fabregat@ebi.ac.uk>
  */
+// This is required so that we can use the non setter/getter methods e.g. minus().
+// With this annotation every Coordinate gets deserialised as CoordinateFactory
+@JsonDeserialize(as=CoordinateFactory.class)
 public interface Coordinate {
 
     Double getX();
