@@ -70,3 +70,10 @@ To unmarshall a diagram colour profile from its JSON file:
 String profileJson = new String(Files.readAllBytes(Paths.get(filename)));
 DiagramProfile profile = DiagramFactory.getProfile(profileJson);
 ```
+
+To unmarshall an analysis overlay colour profile from its JSON file:
+
+```java
+String analysisProfileJson = new String(Files.readAllBytes(Paths.get(filename)));
+AnalysisProfile profile = DiagramFactory.getAnalysisProfile(analysisProfileJson);
+```

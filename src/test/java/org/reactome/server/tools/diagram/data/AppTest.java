@@ -9,6 +9,7 @@ import org.reactome.server.tools.diagram.data.exception.DeserializationException
 import org.reactome.server.tools.diagram.data.graph.Graph;
 import org.reactome.server.tools.diagram.data.layout.Diagram;
 import org.reactome.server.tools.diagram.data.profile.DiagramProfile;
+import org.reactome.server.tools.diagram.data.profile.analysis.AnalysisProfile;
 import sun.misc.IOUtils;
 
 import java.io.*;
@@ -28,6 +29,10 @@ public class AppTest extends TestCase {
     private static String SUFFIX = ".json";
     private static String MODERN_PROFILE = "Modern";
     private static String STANDARD_PROFILE = "Standard";
+
+    private static String ANALYSIS_PROFILE_1 = "profile_01";
+    private static String ANALYSIS_PROFILE_2 = "profile_02";
+    private static String ANALYSIS_PROFILE_3 = "profile_03";
 
     /**
      * Create the test case
@@ -89,7 +94,7 @@ public class AppTest extends TestCase {
     /**
      * Profile Test :-)
      */
-    public void testProfile()
+    public void testDiagramProfile()
     {
         String profileName = MODERN_PROFILE + ".json";
         try {
@@ -97,7 +102,26 @@ public class AppTest extends TestCase {
             DiagramProfile profile = DiagramFactory.getProfile(json);
             assertNotNull(profile);
             assertEquals(MODERN_PROFILE, profile.getName());
-            System.out.println("Testing profile[" + profileName + "] ... OK");
+            System.out.println("Testing diagram colour profile[" + profileName + "] ... OK");
+        } catch (IOException e) {
+            fail("Could not retrieve profile: " + profileName);
+        } catch (DeserializationException e) {
+            e.printStackTrace();
+            fail();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
+
+    public void testAnalysisProfile()
+    {
+        String profileName = ANALYSIS_PROFILE_1 + ".json";
+        try {
+            String json = readFile(profileName);
+            AnalysisProfile profile = DiagramFactory.getAnalysisProfile(json);
+            assertNotNull(profile);
+            System.out.println("Testing analysis colour profile[" + profileName + " : " + profile.getName() + "] ... OK");
         } catch (IOException e) {
             fail("Could not retrieve profile: " + profileName);
         } catch (DeserializationException e) {
