@@ -1,4 +1,4 @@
-package org.reactome.server.tools.diagram.data.profile;
+package org.reactome.server.tools.diagram.data.profile.diagram;
 
 import java.io.Serializable;
 

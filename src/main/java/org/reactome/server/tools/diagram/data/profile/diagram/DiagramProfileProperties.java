@@ -1,4 +1,4 @@
-package org.reactome.server.tools.diagram.data.profile;
+package org.reactome.server.tools.diagram.data.profile.diagram;
 
 /**
  * @author Antonio Fabregat <fabregat@ebi.ac.uk>
