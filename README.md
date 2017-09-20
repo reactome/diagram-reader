@@ -63,3 +63,10 @@ To unmarshall a graph from its JSON file:
 String graphJson = new String(Files.readAllBytes(Paths.get(filename)));
 Graph graph = DiagramFactory.getGraph(graphJson);
 ```
+
+To unmarshall a diagram colour profile from its JSON file:
+
+```java
+String profileJson = new String(Files.readAllBytes(Paths.get(filename)));
+DiagramProfile profile = DiagramFactory.getProfile(profileJson);
+```
