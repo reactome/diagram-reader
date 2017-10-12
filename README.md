@@ -77,3 +77,10 @@ To unmarshall an analysis overlay colour profile from its JSON file:
 String analysisProfileJson = new String(Files.readAllBytes(Paths.get(filename)));
 AnalysisProfile profile = DiagramFactory.getAnalysisProfile(analysisProfileJson);
 ```
+
+To unmarshall an interactor overlay colour profile from its JSON file:
+
+```java
+String interactorsProfileJson = new String(Files.readAllBytes(Paths.get(filename)));
+InteractorProfile profile = DiagramFactory.getInteractorsProfile(interactorsProfileJson);
+```
