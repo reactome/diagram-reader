@@ -7,6 +7,7 @@ import org.reactome.server.tools.diagram.data.layout.Diagram;
 import org.reactome.server.tools.diagram.data.mapper.ObjectMapperProvider;
 import org.reactome.server.tools.diagram.data.profile.diagram.DiagramProfile;
 import org.reactome.server.tools.diagram.data.profile.analysis.AnalysisProfile;
+import org.reactome.server.tools.diagram.data.profile.interactors.InteractorProfile;
 
 /**
  * @author Kostas Sidiropoulos <ksidiro@ebi.ac.uk>
@@ -32,6 +33,10 @@ public abstract class DiagramFactory {
 
     public static AnalysisProfile getAnalysisProfile(String json) throws DeserializationException {
         return getObject(AnalysisProfile.class, json);
+    }
+
+    public static InteractorProfile getInteractorsProfile(String json) throws DeserializationException {
+        return getObject(InteractorProfile.class, json);
     }
 
     private static <T> T getObject(Class<T> cls, String json) throws DeserializationException {

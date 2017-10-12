@@ -10,6 +10,7 @@ import org.reactome.server.tools.diagram.data.graph.Graph;
 import org.reactome.server.tools.diagram.data.layout.Diagram;
 import org.reactome.server.tools.diagram.data.profile.diagram.DiagramProfile;
 import org.reactome.server.tools.diagram.data.profile.analysis.AnalysisProfile;
+import org.reactome.server.tools.diagram.data.profile.interactors.InteractorProfile;
 import sun.misc.IOUtils;
 
 import java.io.*;
@@ -33,6 +34,9 @@ public class AppTest extends TestCase {
     private static String ANALYSIS_PROFILE_1 = "profile_01";
     private static String ANALYSIS_PROFILE_2 = "profile_02";
     private static String ANALYSIS_PROFILE_3 = "profile_03";
+
+    private static String INTERACTORS_PROFILE_1 = "interactor_profile_01";
+    private static String INTERACTORS_PROFILE_2 = "interactor_profile_02";
 
     /**
      * Create the test case
@@ -122,6 +126,25 @@ public class AppTest extends TestCase {
             AnalysisProfile profile = DiagramFactory.getAnalysisProfile(json);
             assertNotNull(profile);
             System.out.println("Testing analysis colour profile[" + profileName + " : " + profile.getName() + "] ... OK");
+        } catch (IOException e) {
+            fail("Could not retrieve profile: " + profileName);
+        } catch (DeserializationException e) {
+            e.printStackTrace();
+            fail();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
+
+    public void testInteractorsProfile()
+    {
+        String profileName = INTERACTORS_PROFILE_1 + ".json";
+        try {
+            String json = readFile(profileName);
+            InteractorProfile profile = DiagramFactory.getInteractorsProfile(json);
+            assertNotNull(profile);
+            System.out.println("Testing Interactor colour profile[" + profileName + " : " + profile.getName() + "] ... OK");
         } catch (IOException e) {
             fail("Could not retrieve profile: " + profileName);
         } catch (DeserializationException e) {
