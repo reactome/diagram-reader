@@ -113,13 +113,13 @@ public class AppTest extends TestCase {
      */
     public void testDiagramProfile() {
         String profileName = MODERN_PROFILE + ".json";
-        System.out.println("Testing diagram colour profile[" + profileName + "] ...");
+        System.out.print("Testing diagram colour profile[" + profileName + "] ...");
         try {
             String json = readFile(profileName);
             DiagramProfile profile = DiagramFactory.getProfile(json);
             assertNotNull(profile);
             assertEquals(MODERN_PROFILE, profile.getName());
-            System.out.print("OK");
+            System.out.print("OK\n");
         } catch (IOException e) {
             fail("Could not retrieve profile: " + profileName);
         } catch (DeserializationException e) {
@@ -155,7 +155,7 @@ public class AppTest extends TestCase {
             String json = readFile(profileName);
             InteractorProfile profile = DiagramFactory.getInteractorsProfile(json);
             assertNotNull(profile);
-            System.out.println("Testing Interactor colour profile[" + profileName + " : " + profile.getName() + "] ... OK");
+            System.out.println("Testing interactor colour profile[" + profileName + " : " + profile.getName() + "] ... OK");
         } catch (IOException e) {
             fail("Could not retrieve profile: " + profileName);
         } catch (DeserializationException e) {
