@@ -1,4 +1,4 @@
-package org.reactome.server.tools.diagram.data.fireworks;
+package org.reactome.server.tools.diagram.data.fireworks.graph;
 
 import java.util.List;
 

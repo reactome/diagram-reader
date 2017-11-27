@@ -6,7 +6,8 @@ import junit.framework.TestSuite;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 import org.reactome.server.tools.diagram.data.exception.DeserializationException;
-import org.reactome.server.tools.diagram.data.fireworks.FireworksGraph;
+import org.reactome.server.tools.diagram.data.fireworks.graph.FireworksGraph;
+import org.reactome.server.tools.diagram.data.fireworks.profile.FireworksProfile;
 import org.reactome.server.tools.diagram.data.graph.Graph;
 import org.reactome.server.tools.diagram.data.layout.Diagram;
 import org.reactome.server.tools.diagram.data.profile.diagram.DiagramProfile;
@@ -48,6 +49,11 @@ public class AppTest extends TestCase {
 
     private static String FIREWORKS_HOMO_SAPIENS = "Homo_sapiens";
     private static Long HOMO_SAPIENS_ID = 48887L;
+
+    private static String FIREWORKS_PROFILE_1 = "fireworks_profile_01";
+    private static String FIREWORKS_PROFILE_2 = "fireworks_profile_02";
+    private static String FIREWORKS_PROFILE_3 = "fireworks_profile_03";
+    private static String FIREWORKS_PROFILE_4 = "fireworks_profile_04";
 
     static TrustManager[] trustAllCerts;
     /**
@@ -190,6 +196,29 @@ public class AppTest extends TestCase {
             fail("Could not retrieve fireworks layout from: " + url);
             e.printStackTrace();
         } catch (DeserializationException e) {
+            fail();
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Fireworks profile Tests :-)
+     */
+    public void testFireworksProfile() {
+        String profileName = FIREWORKS_PROFILE_1 + ".json";
+        System.out.print("Testing fireworks colour profile[" + profileName + "] ...");
+        try {
+            String json = readFile(profileName);
+            FireworksProfile profile = FireworksFactory.getProfile(json);
+            assertNotNull(profile);
+            assertEquals("Copper", profile.getName());
+            System.out.print("OK\n");
+        } catch (IOException e) {
+            fail("Could not retrieve profile: " + profileName);
+        } catch (DeserializationException e) {
+            fail();
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
             fail();
             e.printStackTrace();
         }
