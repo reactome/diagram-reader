@@ -49,6 +49,7 @@ Then add the diagram-reader dependency
     </dependency>
 <dependencies>
 ```
+### Pathway diagram examples
 
 To unmarshall a diagram from its JSON file:
 
@@ -85,9 +86,18 @@ String interactorsProfileJson = new String(Files.readAllBytes(Paths.get(filename
 InteractorProfile profile = DiagramFactory.getInteractorsProfile(interactorsProfileJson);
 ```
 
-To unmarshall a Fireworks graph from its JSON file:
+### Pathways overview examples
+
+To unmarshall a Pathways overview (a.k.a Fireworks) graph from its JSON file:
 
 ```java
 String json = new String(Files.readAllBytes(Paths.get(filename)));
 FireworksGraph fireworks = FireworksFactory.getGraph(json);
+```
+
+To unmarshall a Pathways overview colour profile from its JSON file:
+
+```java
+String json = new String(Files.readAllBytes(Paths.get(filename)));
+FireworksProfile profile = FireworksFactory.getProfile(json);
 ```
