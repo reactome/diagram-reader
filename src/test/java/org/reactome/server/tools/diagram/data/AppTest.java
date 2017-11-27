@@ -6,6 +6,7 @@ import junit.framework.TestSuite;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 import org.reactome.server.tools.diagram.data.exception.DeserializationException;
+import org.reactome.server.tools.diagram.data.fireworks.FireworksGraph;
 import org.reactome.server.tools.diagram.data.graph.Graph;
 import org.reactome.server.tools.diagram.data.layout.Diagram;
 import org.reactome.server.tools.diagram.data.profile.diagram.DiagramProfile;
@@ -29,7 +30,10 @@ import java.security.cert.X509Certificate;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AppTest extends TestCase {
 
-    private static String BASE_URL = "https://reactome.org/download/current/diagram/";
+    private static String BASE_URL = "https://reactome.org/download/current/";
+    private static String DIAGRAM_BASE_URL = BASE_URL + "diagram/";
+    private static String FIREWORKS_BASE_URL = BASE_URL + "fireworks/";
+
     private static String DIAGRAM_ID = "R-HSA-186712"; //Stable Id or DBId
     private static String SUFFIX = ".json";
     private static String MODERN_PROFILE = "Modern";
@@ -41,6 +45,9 @@ public class AppTest extends TestCase {
 
     private static String INTERACTORS_PROFILE_1 = "interactor_profile_01";
     private static String INTERACTORS_PROFILE_2 = "interactor_profile_02";
+
+    private static String FIREWORKS_HOMO_SAPIENS = "Homo_sapiens";
+    private static Long HOMO_SAPIENS_ID = 48887L;
 
     static TrustManager[] trustAllCerts;
     /**
@@ -72,7 +79,7 @@ public class AppTest extends TestCase {
      */
     public void testDiagram() {
         System.out.print("Testing diagram[" + DIAGRAM_ID + "]...");
-        String url = BASE_URL + DIAGRAM_ID + SUFFIX;
+        String url = DIAGRAM_BASE_URL + DIAGRAM_ID + SUFFIX;
         try {
             String json = readFromURL(url);
             Diagram diagram = DiagramFactory.getDiagram(json);
@@ -93,7 +100,7 @@ public class AppTest extends TestCase {
      */
     public void testGraph() {
         System.out.print("Testing graph[" + DIAGRAM_ID + "] ...");
-        String url = BASE_URL + DIAGRAM_ID + ".graph" + SUFFIX;
+        String url = DIAGRAM_BASE_URL + DIAGRAM_ID + ".graph" + SUFFIX;
         try {
             String json = readFromURL(url);
             Graph graph = DiagramFactory.getGraph(json);
@@ -164,6 +171,27 @@ public class AppTest extends TestCase {
         } catch (URISyntaxException e) {
             e.printStackTrace();
             fail();
+        }
+    }
+
+    /**
+     * Fireworks layout test :-)
+     */
+    public void testFireworks() {
+        System.out.print("Testing Fireworks[" + FIREWORKS_HOMO_SAPIENS + "]...");
+        String url = FIREWORKS_BASE_URL + FIREWORKS_HOMO_SAPIENS + SUFFIX;
+        try {
+            String json = readFromURL(url);
+            FireworksGraph fireworks = FireworksFactory.getGraph(json);
+            assertNotNull(fireworks);
+            assertEquals(HOMO_SAPIENS_ID, fireworks.getSpeciesId());
+            System.out.print("OK\n");
+        } catch (IOException e) {
+            fail("Could not retrieve fireworks layout from: " + url);
+            e.printStackTrace();
+        } catch (DeserializationException e) {
+            fail();
+            e.printStackTrace();
         }
     }
 
