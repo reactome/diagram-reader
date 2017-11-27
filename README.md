@@ -84,3 +84,10 @@ To unmarshall an interactor overlay colour profile from its JSON file:
 String interactorsProfileJson = new String(Files.readAllBytes(Paths.get(filename)));
 InteractorProfile profile = DiagramFactory.getInteractorsProfile(interactorsProfileJson);
 ```
+
+To unmarshall a Fireworks graph from its JSON file:
+
+```java
+String json = new String(Files.readAllBytes(Paths.get(filename)));
+FireworksGraph fireworks = FireworksFactory.getGraph(json);
+```
