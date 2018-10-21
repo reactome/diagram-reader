@@ -13,7 +13,7 @@ import org.reactome.server.tools.diagram.data.profile.interactors.InteractorProf
  * @author Kostas Sidiropoulos <ksidiro@ebi.ac.uk>
  */
 public abstract class DiagramFactory {
-    private static ObjectMapper mapper = null;
+    private static ObjectMapper mapper;
 
     static {
         mapper = ObjectMapperProvider.getMapper();
