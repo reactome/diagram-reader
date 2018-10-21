@@ -9,6 +9,6 @@ public class BoxImpl extends ShapeImpl {
 		setB(b);
 		setS(s);
 		setEmpty(empty);
-		setType("BOX");
+		setType(Type.BOX);
 	}
 }

@@ -10,6 +10,11 @@ public class SegmentImpl implements Segment {
 	public SegmentImpl() {
 	}
 
+	public SegmentImpl(double fx, double fy, double tx, double ty) {
+		from = new CoordinateImpl(fx, fy);
+		to = new CoordinateImpl(tx, ty);
+	}
+
 	public SegmentImpl(Coordinate from, Coordinate to) {
 		this.from = from;
 		this.to = to;

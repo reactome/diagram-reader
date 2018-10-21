@@ -8,7 +8,7 @@ public class ArrowImpl extends ShapeImpl {
 		setA(a);
 		setB(b);
 		setC(c);
-		setType("ARROW");
+		setType(Type.ARROW);
 		setEmpty(empty);
 	}
 }

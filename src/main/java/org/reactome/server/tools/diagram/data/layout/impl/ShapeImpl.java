@@ -11,8 +11,10 @@ public class ShapeImpl implements Shape {
 	private Double r;
 	private Double r1;
 	private String s;
-	private String type;
+	private Type type;
 	private Boolean empty;
+
+	public enum Type {CIRCLE, DOUBLE_CIRCLE, STOP, ARROW, BOX}
 
 	public ShapeImpl() {
 	}
@@ -73,10 +75,10 @@ public class ShapeImpl implements Shape {
 
 	@Override
 	public String getType() {
-		return type;
+		return type.name();
 	}
 
-	public void setType(String type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
 
@@ -88,4 +90,5 @@ public class ShapeImpl implements Shape {
 	public void setEmpty(Boolean empty) {
 		this.empty = empty;
 	}
+
 }

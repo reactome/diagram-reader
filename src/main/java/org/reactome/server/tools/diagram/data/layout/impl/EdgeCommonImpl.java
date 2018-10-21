@@ -27,9 +27,17 @@ public class EdgeCommonImpl extends DiagramObjectImpl implements EdgeCommon {
 		return reactionType;
 	}
 
+	public void setReactionType(String reactionType) {
+		this.reactionType = reactionType;
+	}
+
 	@Override
 	public String getInteractionType() {
 		return interactionType;
+	}
+
+	public void setInteractionType(String interactionType) {
+		this.interactionType = interactionType;
 	}
 
 	@Override
@@ -37,9 +45,17 @@ public class EdgeCommonImpl extends DiagramObjectImpl implements EdgeCommon {
 		return segments;
 	}
 
+	public void setSegments(List<Segment> segments) {
+		this.segments = segments;
+	}
+
 	@Override
 	public Shape getEndShape() {
 		return endShape;
+	}
+
+	public void setEndShape(Shape endShape) {
+		this.endShape = endShape;
 	}
 
 	@Override
@@ -47,9 +63,17 @@ public class EdgeCommonImpl extends DiagramObjectImpl implements EdgeCommon {
 		return reactionShape;
 	}
 
+	public void setReactionShape(Shape reactionShape) {
+		this.reactionShape = reactionShape;
+	}
+
 	@Override
 	public List<ReactionPart> getInputs() {
 		return inputs;
+	}
+
+	public void setInputs(List<ReactionPart> inputs) {
+		this.inputs = inputs;
 	}
 
 	@Override
@@ -57,9 +81,17 @@ public class EdgeCommonImpl extends DiagramObjectImpl implements EdgeCommon {
 		return outputs;
 	}
 
+	public void setOutputs(List<ReactionPart> outputs) {
+		this.outputs = outputs;
+	}
+
 	@Override
 	public List<ReactionPart> getCatalysts() {
 		return catalysts;
+	}
+
+	public void setCatalysts(List<ReactionPart> catalysts) {
+		this.catalysts = catalysts;
 	}
 
 	@Override
@@ -67,9 +99,17 @@ public class EdgeCommonImpl extends DiagramObjectImpl implements EdgeCommon {
 		return inhibitors;
 	}
 
+	public void setInhibitors(List<ReactionPart> inhibitors) {
+		this.inhibitors = inhibitors;
+	}
+
 	@Override
 	public List<ReactionPart> getActivators() {
 		return activators;
+	}
+
+	public void setActivators(List<ReactionPart> activators) {
+		this.activators = activators;
 	}
 
 	@Override
@@ -77,8 +117,16 @@ public class EdgeCommonImpl extends DiagramObjectImpl implements EdgeCommon {
 		return precedingEvents;
 	}
 
+	public void setPrecedingEvents(List<Long> precedingEvents) {
+		this.precedingEvents = precedingEvents;
+	}
+
 	@Override
 	public List<Long> getFollowingEvents() {
 		return followingEvents;
+	}
+
+	public void setFollowingEvents(List<Long> followingEvents) {
+		this.followingEvents = followingEvents;
 	}
 }

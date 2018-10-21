@@ -12,6 +12,7 @@ public class DiagramImpl implements Diagram {
 	private List<Node> nodes;
 	private List<Note> notes;
 	private List<Edge> edges;
+	private List<Link> links;
 	private List<Compartment> compartments;
 	private List<Shadow> shadows;
 	private Long dbId;
@@ -74,7 +75,11 @@ public class DiagramImpl implements Diagram {
 
 	@Override
 	public List<Link> getLinks() {
-		return null;
+		return links;
+	}
+
+	public void setLinks(List<Link> links) {
+		this.links = links;
 	}
 
 	@Override
