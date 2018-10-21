@@ -42,6 +42,10 @@ public class EntityNodeImpl implements EntityNode {
         return diagramIds;
     }
 
+    public void setDiagramIds(List<Long> diagramIds) {
+        this.diagramIds = diagramIds;
+    }
+
     @Override
     public Long getDbId() {
         return dbId;
