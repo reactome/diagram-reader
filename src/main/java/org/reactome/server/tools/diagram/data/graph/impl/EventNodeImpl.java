@@ -1,7 +1,9 @@
 package org.reactome.server.tools.diagram.data.graph.impl;
 
 import org.reactome.server.tools.diagram.data.graph.EventNode;
+import org.reactome.server.tools.diagram.data.graph.base.RegulationBase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EventNodeImpl implements EventNode {
@@ -11,10 +13,11 @@ public class EventNodeImpl implements EventNode {
     private List<Long> inputs;
     private List<Long> outputs;
     private List<Long> catalysts;
-    private List<Long> inhibitors;
-    private List<Long> activators;
-    private List<Long> requirements;
+    private List<Long> inhibitors = new ArrayList<>();
+    private List<Long> activators = new ArrayList<>();
+    private List<Long> requirements = new ArrayList<>();
     private List<Long> diagramIds;
+    private List<Long> efs;
     private Long dbId;
     private String stId;
     private String displayName;
@@ -57,8 +60,26 @@ public class EventNodeImpl implements EventNode {
     }
 
     @Override
+    public List<Long> getEntityFunctionalStatus() {
+        return efs;
+    }
+
+    @Override
     public List<Long> getRequirements() {
         return requirements;
+    }
+
+    public void setRegulations(List<RegulationBase> regulations) {
+        for (RegulationBase regulation : regulations) {
+            String type = regulation.getType().toLowerCase();
+            if (type.startsWith("negative")) {
+                inhibitors.add(regulation.getDbId());
+            } else if (type.startsWith("positive")) {
+                activators.add(regulation.getDbId());
+            } else {
+                requirements.add(regulation.getDbId());
+            }
+        }
     }
 
     @Override

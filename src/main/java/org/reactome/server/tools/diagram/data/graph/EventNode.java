@@ -21,6 +21,8 @@ public interface EventNode extends GraphNode {
 
     List<Long> getActivators();
 
+    List<Long> getEntityFunctionalStatus();
+
     List<Long> getRequirements();
 
     List<Long> getDiagramIds();
