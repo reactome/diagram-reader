@@ -116,7 +116,8 @@ public class ConnectorImpl implements Connector {
 					segment = segments.get(segments.size() - 1);
 					// Adjust the position of the segment to have a distance from the reaction position
 					segments.remove(segment);
-					segments.add(new SegmentImpl(segment.getFrom(), calculateEndpoint(segment, getDistanceForEndpoint(type))));
+					segment = new SegmentImpl(segment.getFrom(), calculateEndpoint(segment, getDistanceForEndpoint(type)));
+					segments.add(segment);
 					points = ShapeBuilder.createStop(
 							segment.getTo().getX(),
 							segment.getTo().getY(),
@@ -128,8 +129,9 @@ public class ConnectorImpl implements Connector {
 				case ACTIVATOR:
 					// Use the last segment of the Connector - closer to the edge (reaction)
 					segment = segments.get(segments.size() - 1);
-					segments.remove(segment);
-					segments.add(new SegmentImpl(segment.getFrom(), calculateEndpoint(segment, getDistanceForEndpoint(type))));
+//					segments.remove(segment);
+//					segment = new SegmentImpl(segment.getFrom(), calculateEndpoint(segment, getDistanceForEndpoint(type)));
+//					segments.add(segment);
 					points = ShapeBuilder.createArrow(
 							segment.getTo().getX(),
 							segment.getTo().getY(),
