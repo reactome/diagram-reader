@@ -124,7 +124,7 @@ public class ConnectorImpl implements Connector {
 							segment.getFrom().getX(),
 							segment.getFrom().getY());
 					// Shape is a stop sign
-					this.endShape = new StopImpl(points.get(0), points.get(1));
+					this.endShape = new StopImpl(points.get(0), points.get(1), points.get(2));
 					break;
 				case ACTIVATOR:
 					// Use the last segment of the Connector - closer to the edge (reaction)
