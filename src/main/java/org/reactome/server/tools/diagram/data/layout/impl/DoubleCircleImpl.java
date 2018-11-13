@@ -8,6 +8,7 @@ public class DoubleCircleImpl extends ShapeImpl {
 		setC(c);
 		setR(r);
 		setR1(r1);
+		setEmpty(true);
 		setType(Type.DOUBLE_CIRCLE);
 	}
 }
