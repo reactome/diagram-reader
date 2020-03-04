@@ -39,7 +39,7 @@
 
     <properties>
         <junit.version>4.12</junit.version>
-        <jackson.version>2.9.9</jackson.version>
+        <jackson.version>2.10.3</jackson.version>
 
         <!--build-->
         <jdk.version>1.8</jdk.version>
