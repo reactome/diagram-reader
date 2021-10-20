@@ -1,10 +1,7 @@
 package org.reactome.server.tools.diagram.data;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-import org.junit.FixMethodOrder;
-import org.junit.runners.MethodSorters;
+
+import org.junit.jupiter.api.*;
 import org.reactome.server.tools.diagram.data.exception.DeserializationException;
 import org.reactome.server.tools.diagram.data.fireworks.graph.FireworksGraph;
 import org.reactome.server.tools.diagram.data.fireworks.profile.FireworksProfile;
@@ -13,7 +10,7 @@ import org.reactome.server.tools.diagram.data.layout.Diagram;
 import org.reactome.server.tools.diagram.data.profile.diagram.DiagramProfile;
 import org.reactome.server.tools.diagram.data.profile.analysis.AnalysisProfile;
 import org.reactome.server.tools.diagram.data.profile.interactors.InteractorProfile;
-import sun.misc.IOUtils;
+
 
 import javax.net.ssl.*;
 import java.io.*;
@@ -24,12 +21,16 @@ import java.nio.file.Paths;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
+import java.util.stream.Collectors;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Unit testing.
  */
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class AppTest extends TestCase {
+@TestMethodOrder(MethodOrderer.MethodName.class)
+public class AppTest {
 
     private static String BASE_URL = "https://reactome.org/download/current/";
     private static String DIAGRAM_BASE_URL = BASE_URL + "diagram/";
@@ -56,33 +57,16 @@ public class AppTest extends TestCase {
     private static String FIREWORKS_PROFILE_4 = "fireworks_profile_04";
 
     static TrustManager[] trustAllCerts;
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
-
-    @Override
-    public void setUp() throws Exception {
-        super.setUp();
+    @BeforeEach
+    public void setUp() {
         overrideCertificateCheck();
     }
 
     /**
      * Diagram Test :-)
      */
+    @Test
     public void testDiagram() {
         System.out.print("Testing diagram[" + DIAGRAM_ID + "]...");
         String url = DIAGRAM_BASE_URL + DIAGRAM_ID + SUFFIX;
@@ -90,13 +74,13 @@ public class AppTest extends TestCase {
             String json = readFromURL(url);
             Diagram diagram = DiagramFactory.getDiagram(json);
             assertNotNull(diagram);
-            assertEquals(DIAGRAM_ID, diagram.getStableId());
+            Assertions.assertEquals(DIAGRAM_ID, diagram.getStableId());
             System.out.print("OK\n");
         } catch (IOException e) {
-            fail("Could not retrieve diagram from: " + url);
+            Assertions.fail("Could not retrieve diagram from: " + url);
             e.printStackTrace();
         } catch (DeserializationException e) {
-            fail();
+            Assertions.fail();
             e.printStackTrace();
         }
     }
@@ -104,6 +88,7 @@ public class AppTest extends TestCase {
     /**
      * Graph Test :-)
      */
+    @Test
     public void testGraph() {
         System.out.print("Testing graph[" + DIAGRAM_ID + "] ...");
         String url = DIAGRAM_BASE_URL + DIAGRAM_ID + ".graph" + SUFFIX;
@@ -113,10 +98,10 @@ public class AppTest extends TestCase {
             assertNotNull(graph);
             System.out.print("OK\n");
         } catch (IOException e) {
-            fail("Could not retrieve graph from: " + url);
+            Assertions.fail("Could not retrieve graph from: " + url);
             e.printStackTrace();
         } catch (DeserializationException e) {
-            fail();
+            Assertions.fail();
             e.printStackTrace();
         }
     }
@@ -124,6 +109,7 @@ public class AppTest extends TestCase {
     /**
      * Profile Tests :-)
      */
+    @Test
     public void testDiagramProfile() {
         String profileName = MODERN_PROFILE + ".json";
         System.out.print("Testing diagram colour profile[" + profileName + "] ...");
@@ -134,16 +120,17 @@ public class AppTest extends TestCase {
             assertEquals(MODERN_PROFILE, profile.getName());
             System.out.print("OK\n");
         } catch (IOException e) {
-            fail("Could not retrieve profile: " + profileName);
+            Assertions.fail("Could not retrieve profile: " + profileName);
         } catch (DeserializationException e) {
-            fail();
+            Assertions.fail();
             e.printStackTrace();
         } catch (URISyntaxException e) {
-            fail();
+            Assertions.fail();
             e.printStackTrace();
         }
     }
 
+    @Test
     public void testAnalysisProfile() {
         String profileName = ANALYSIS_PROFILE_1 + ".json";
         try {
@@ -152,16 +139,17 @@ public class AppTest extends TestCase {
             assertNotNull(profile);
             System.out.println("Testing analysis colour profile[" + profileName + " : " + profile.getName() + "] ... OK");
         } catch (IOException e) {
-            fail("Could not retrieve profile: " + profileName);
+            Assertions.fail("Could not retrieve profile: " + profileName);
         } catch (DeserializationException e) {
-            fail();
+            Assertions.fail();
             e.printStackTrace();
         } catch (URISyntaxException e) {
-            fail();
+            Assertions.fail();
             e.printStackTrace();
         }
     }
 
+    @Test
     public void testInteractorsProfile() {
         String profileName = INTERACTORS_PROFILE_1 + ".json";
         try {
@@ -170,19 +158,20 @@ public class AppTest extends TestCase {
             assertNotNull(profile);
             System.out.println("Testing interactor colour profile[" + profileName + " : " + profile.getName() + "] ... OK");
         } catch (IOException e) {
-            fail("Could not retrieve profile: " + profileName);
+            Assertions.fail("Could not retrieve profile: " + profileName);
         } catch (DeserializationException e) {
             e.printStackTrace();
-            fail();
+            Assertions.fail();
         } catch (URISyntaxException e) {
             e.printStackTrace();
-            fail();
+            Assertions.fail();
         }
     }
 
     /**
      * Fireworks layout test :-)
      */
+    @Test
     public void testFireworks() {
         System.out.print("Testing Fireworks[" + FIREWORKS_HOMO_SAPIENS + "]...");
         String url = FIREWORKS_BASE_URL + FIREWORKS_HOMO_SAPIENS + SUFFIX;
@@ -193,10 +182,10 @@ public class AppTest extends TestCase {
             assertEquals(HOMO_SAPIENS_ID, fireworks.getSpeciesId());
             System.out.print("OK\n");
         } catch (IOException e) {
-            fail("Could not retrieve fireworks layout from: " + url);
+            Assertions.fail("Could not retrieve fireworks layout from: " + url);
             e.printStackTrace();
         } catch (DeserializationException e) {
-            fail();
+            Assertions.fail();
             e.printStackTrace();
         }
     }
@@ -204,6 +193,7 @@ public class AppTest extends TestCase {
     /**
      * Fireworks profile Tests :-)
      */
+    @Test
     public void testFireworksProfile() {
         String profileName = FIREWORKS_PROFILE_1 + ".json";
         System.out.print("Testing fireworks colour profile[" + profileName + "] ...");
@@ -214,22 +204,23 @@ public class AppTest extends TestCase {
             assertEquals("Copper", profile.getName());
             System.out.print("OK\n");
         } catch (IOException e) {
-            fail("Could not retrieve profile: " + profileName);
+            Assertions.fail("Could not retrieve profile: " + profileName);
         } catch (DeserializationException e) {
-            fail();
+            Assertions.fail();
             e.printStackTrace();
         } catch (URISyntaxException e) {
-            fail();
+            Assertions.fail();
             e.printStackTrace();
         }
     }
 
     private static String readFromURL(String endpoint) throws IOException {
         URL url = new URL(endpoint);
-        HttpsURLConnection httpURLConnection  = (HttpsURLConnection) url.openConnection();
+        HttpsURLConnection httpURLConnection = (HttpsURLConnection) url.openConnection();
         httpURLConnection.connect();
         InputStream in = httpURLConnection.getInputStream();
-        return new String(IOUtils.readFully(in, -1, true));
+        return new BufferedReader(new InputStreamReader(in))
+                .lines().collect(Collectors.joining("\n"));
     }
 
     private static String readFile(String filename) throws IOException, URISyntaxException {
@@ -237,25 +228,27 @@ public class AppTest extends TestCase {
     }
 
     /**
-     *  Overrides the check and accept an untrusted certificate
-     *
-     *  Fix for
-     *  Exception in thread "main" javax.net.ssl.SSLHandshakeException:
-     *  sun.security.validator.ValidatorException:
-     *           PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException:
-     *               unable to find valid certification path to requested target
+     * Overrides the check and accept an untrusted certificate
+     * <p>
+     * Fix for
+     * Exception in thread "main" javax.net.ssl.SSLHandshakeException:
+     * sun.security.validator.ValidatorException:
+     * PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException:
+     * unable to find valid certification path to requested target
      */
-    private static void overrideCertificateCheck(){
+    private static void overrideCertificateCheck() {
         try {
-            trustAllCerts = new TrustManager[] {
+            trustAllCerts = new TrustManager[]{
                     new X509TrustManager() {
                         public java.security.cert.X509Certificate[] getAcceptedIssuers() {
                             return null;
                         }
 
-                        public void checkClientTrusted(X509Certificate[] certs, String authType) {  }
+                        public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                        }
 
-                        public void checkServerTrusted(X509Certificate[] certs, String authType) {  }
+                        public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                        }
 
                     }
             };
