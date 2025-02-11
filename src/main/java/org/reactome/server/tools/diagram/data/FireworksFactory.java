@@ -7,7 +7,7 @@ import org.reactome.server.tools.diagram.data.fireworks.profile.FireworksProfile
 import org.reactome.server.tools.diagram.data.mapper.ObjectMapperProvider;
 
 /**
- * @author Kostas Sidiropoulos <ksidiro@ebi.ac.uk>
+ * @author Kostas Sidiropoulos (ksidiro@ebi.ac.uk)
  */
 public abstract class FireworksFactory {
     private static ObjectMapper mapper = null;
