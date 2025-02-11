@@ -4,7 +4,7 @@ import org.reactome.server.tools.diagram.data.layout.Bound;
 import org.reactome.server.tools.diagram.data.layout.Coordinate;
 
 /**
- * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Antonio Fabregat (fabregat@ebi.ac.uk)
  */
 public class BoundFactory implements Bound {
 

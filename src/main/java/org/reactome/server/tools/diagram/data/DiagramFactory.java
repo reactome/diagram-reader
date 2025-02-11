@@ -10,7 +10,7 @@ import org.reactome.server.tools.diagram.data.profile.analysis.AnalysisProfile;
 import org.reactome.server.tools.diagram.data.profile.interactors.InteractorProfile;
 
 /**
- * @author Kostas Sidiropoulos <ksidiro@ebi.ac.uk>
+ * @author Kostas Sidiropoulos (ksidiro@ebi.ac.uk)
  */
 public abstract class DiagramFactory {
     private static ObjectMapper mapper;

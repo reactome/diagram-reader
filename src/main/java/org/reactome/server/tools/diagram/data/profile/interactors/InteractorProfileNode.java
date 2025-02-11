@@ -3,7 +3,7 @@ package org.reactome.server.tools.diagram.data.profile.interactors;
 import java.io.Serializable;
 
 /**
- * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Antonio Fabregat (fabregat@ebi.ac.uk)
  */
 public interface InteractorProfileNode extends Serializable {
 

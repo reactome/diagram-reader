@@ -5,7 +5,7 @@ import org.reactome.server.tools.diagram.data.layout.Coordinate;
 import org.reactome.server.tools.diagram.data.layout.Shape;
 
 /**
- * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Antonio Fabregat (fabregat@ebi.ac.uk)
  */
 public class ShapeFactory implements Shape {
     protected Coordinate a;
