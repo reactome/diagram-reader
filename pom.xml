@@ -41,9 +41,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git://github.com/reactome/pwp-infinite-scroller.git</connection>
-        <developerConnection>scm:git:ssh://github.com:reactome/pwp-infinite-scroller.git</developerConnection>
-        <url>https://github.com/reactome/pwp-infinite-scroller/tree/master</url>
+        <connection>scm:git:git://github.com/reactome/diagram-reader.git</connection>
+        <developerConnection>scm:git:ssh://github.com:reactome/diagram-reader.git</developerConnection>
+        <url>https://github.com/reactome/diagram-reader/tree/master</url>
     </scm>
     <!-- Configures the distribution to nexus repository -->
     <distributionManagement>
@@ -228,7 +228,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 </project>
